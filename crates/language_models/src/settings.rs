@@ -11,6 +11,7 @@ use crate::provider::{
     open_ai_compatible::OpenAiCompatibleSettings, open_router, open_router::OpenRouterSettings,
     opencode, opencode::OpenCodeSettings, resolve_custom_headers,
     vercel_ai_gateway::VercelAiGatewaySettings, x_ai::XAiSettings,
+    x_ai_subscribed::XAiSubscribedSettings,
 };
 
 #[derive(Debug, RegisterSetting)]
@@ -30,6 +31,7 @@ pub struct AllLanguageModelSettings {
     pub openai_compatible: HashMap<Arc<str>, OpenAiCompatibleSettings>,
     pub vercel_ai_gateway: VercelAiGatewaySettings,
     pub x_ai: XAiSettings,
+    pub x_ai_subscribed: XAiSubscribedSettings,
     pub zed_dot_dev: ZedDotDevSettings,
 }
 
@@ -64,6 +66,7 @@ impl settings::Settings for AllLanguageModelSettings {
         let openai_compatible = language_models.openai_compatible.unwrap();
         let vercel_ai_gateway = language_models.vercel_ai_gateway.unwrap();
         let x_ai = language_models.x_ai.unwrap();
+        let x_ai_subscribed = language_models.x_ai_subscribed.unwrap();
         let zed_dot_dev = language_models.zed_dot_dev.unwrap();
         Self {
             anthropic: AnthropicSettings {
@@ -204,6 +207,15 @@ impl settings::Settings for AllLanguageModelSettings {
                 api_url: x_ai.api_url.unwrap(),
                 available_models: x_ai.available_models.unwrap_or_default(),
                 custom_headers: custom_headers_from("xAI", x_ai.custom_headers, &[]),
+            },
+            x_ai_subscribed: XAiSubscribedSettings {
+                api_url: x_ai_subscribed.api_url.unwrap(),
+                available_models: x_ai_subscribed.available_models.unwrap_or_default(),
+                custom_headers: custom_headers_from(
+                    "SuperGrok",
+                    x_ai_subscribed.custom_headers,
+                    &[],
+                ),
             },
             zed_dot_dev: ZedDotDevSettings {
                 available_models: zed_dot_dev.available_models.unwrap_or_default(),

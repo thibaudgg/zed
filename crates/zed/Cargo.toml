@@ -310,11 +310,10 @@ osx_url_schemes = ["zed"]
 
 [package.metadata.bundle-stable]
 icon = ["resources/app-icon@2x.png", "resources/app-icon.png"]
-identifier = "dev.zed.Zed"
-name = "Zed"
+identifier = "dev.thibaudgg.ZedGrok"
+name = "Zed Grok"
 osx_minimum_system_version = "10.15.7"
 osx_info_plist_exts = ["resources/info/*"]
-osx_url_schemes = ["zed"]
 
 [package.metadata.cargo-machete]
 ignored = ["profiling", "zstd", "tracing"]

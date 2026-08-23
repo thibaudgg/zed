@@ -26,6 +26,7 @@ pub struct AllLanguageModelSettingsContent {
     pub openai_compatible: Option<HashMap<Arc<str>, OpenAiCompatibleSettingsContent>>,
     pub vercel_ai_gateway: Option<VercelAiGatewaySettingsContent>,
     pub x_ai: Option<XAiSettingsContent>,
+    pub x_ai_subscribed: Option<XAiSubscribedSettingsContent>,
     #[serde(rename = "zed.dev")]
     pub zed_dot_dev: Option<ZedDotDevSettingsContent>,
 }
@@ -526,6 +527,14 @@ pub struct XaiAvailableModel {
     pub supports_images: Option<bool>,
     pub supports_tools: Option<bool>,
     pub parallel_tool_calls: Option<bool>,
+}
+
+#[with_fallible_options]
+#[derive(Default, Clone, Debug, Serialize, Deserialize, PartialEq, JsonSchema, MergeFrom)]
+pub struct XAiSubscribedSettingsContent {
+    pub api_url: Option<String>,
+    pub available_models: Option<Vec<XaiAvailableModel>>,
+    pub custom_headers: Option<HashMap<String, String>>,
 }
 
 #[with_fallible_options]

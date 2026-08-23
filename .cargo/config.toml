@@ -22,3 +22,4 @@ rustflags = ["-C", "link-arg=-fuse-ld=lld"]
 
 [env]
 MACOSX_DEPLOYMENT_TARGET = "10.15.7"
+ZED_UPDATE_EXPLANATION = "Zed Grok is a personal fork. Update by rebasing onto the latest official stable tag, then rebuild. It will not auto-update from zed.dev."
